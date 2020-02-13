@@ -8,7 +8,7 @@ const jsonParser = bodyParser.json()
 // const dbhandlers = require("./db.js");
 const Pool = require('pg').Pool
 const pool = new Pool({
-    database: 'ebdb',
+    database: 'postgres',
     host: process.env.RDS_HOSTNAME,
     user: process.env.RDS_USERNAME,
     password: process.env.RDS_PASSWORD,
