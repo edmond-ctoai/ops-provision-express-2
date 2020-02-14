@@ -7,6 +7,18 @@ const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 // const dbhandlers = require("./db.js");
 const Pool = require('pg').Pool
+
+router.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+router.get('/about', function (req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+router.get('/update', function (req, res) {
+
+console.log("Updating DB.")
 const pool = new Pool({
     database: 'postgres',
     host: process.env.RDS_HOSTNAME,
@@ -23,13 +35,8 @@ pool.query(`CREATE TABLE content (ID SERIAL PRIMARY KEY, data text);`, (err, res
     pool.end();
 });
 
-router.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
 
-router.get('/about', function (req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
+})
 
 router.post('/post', jsonParser, function (req, res) {
     res.send(req.body)
