@@ -18,22 +18,24 @@ router.get('/about', function (req, res) {
 
 router.get('/update', function (req, res) {
 
-console.log("Updating DB.")
-const pool = new Pool({
-    database: 'postgres',
-    host: process.env.RDS_HOSTNAME,
-    user: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASSWORD,
-    port: process.env.RDS_PORT
-})
+
+	res.send(process.env)
+    console.log("Updating DB.")
+    const pool = new Pool({
+        database: 'postgres',
+        host: process.env.RDS_HOSTNAME,
+        user: process.env.RDS_USERNAME,
+        password: process.env.RDS_PASSWORD,
+        port: process.env.RDS_PORT
+    })
 
 
-console.log("hola")
+    console.log("hola")
 
-pool.query(`CREATE TABLE content (ID SERIAL PRIMARY KEY, data text);`, (err, res) => {
-    console.log(err, res);
-    pool.end();
-});
+    pool.query(`CREATE TABLE content (ID SERIAL PRIMARY KEY, data text);`, (err, res) => {
+        console.log(err, res);
+        pool.end();
+    });
 
 
 })
